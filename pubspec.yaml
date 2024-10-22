@@ -13,7 +13,7 @@ dependencies:
 
 
   cupertino_icons: ^1.0.6
-  flutter_toast_message_bar: ^0.0.8
+  toast_message_bar: ^0.0.6
   flutter_spinkit: ^5.2.1
   intl: ^0.19.0
   flutter_bloc: ^8.1.6

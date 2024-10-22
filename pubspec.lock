@@ -115,14 +115,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_toast_message_bar:
-    dependency: "direct main"
-    description:
-      name: flutter_toast_message_bar
-      sha256: f4ae5ff83a09457bc44a3ce19ab231d015b85a0bf1740582fef4966f2a17d132
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.8"
   font_awesome_flutter:
     dependency: transitive
     description:
@@ -288,6 +280,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.0"
+  toast_message_bar:
+    dependency: "direct main"
+    description:
+      name: toast_message_bar
+      sha256: "26267d60cbe342945761b0f64f6ad0657949a7b9d2a36b551c609451fdfcd6dc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.6"
   typed_data:
     dependency: transitive
     description:
