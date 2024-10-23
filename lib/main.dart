@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(
                     width: 150,
-                    child: InputSelect(
+                    child: SelectFieldUI(
                       hintText: 'Status',
                       controller: controlller2,
                       options: [
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(
                     width: 150,
-                    child: InputSelect(
+                    child: SelectFieldUI(
                       controller: controlller,
                       hintText: 'Categoria',
                       options: [
