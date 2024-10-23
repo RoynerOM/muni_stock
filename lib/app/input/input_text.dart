@@ -14,6 +14,7 @@ class InputText extends StatelessWidget {
     this.sufixIcon,
     this.onTap,
     this.prefixIcon,
+    this.obscureText = false,
   });
   final String label;
   final String placeholder;
@@ -22,6 +23,7 @@ class InputText extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final bool readOnly;
   final bool enabled;
+  final bool obscureText;
   final TextStyle? style;
   final Widget? sufixIcon;
   final Widget? prefixIcon;
@@ -47,6 +49,7 @@ class InputText extends StatelessWidget {
             enabled: enabled,
             onChanged: onChanged,
             controller: controller,
+            obscureText: obscureText,
             style: style,
             onTap: onTap,
             decoration: InputDecoration(
