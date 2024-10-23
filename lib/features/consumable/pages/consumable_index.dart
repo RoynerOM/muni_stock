@@ -38,13 +38,7 @@ class ConsumableIndex extends StatelessWidget {
             SizedBox(height: 20),
             Spacer(),
             Icon(
-              Icons.settings,
-              size: 32,
-              color: Colors.white,
-            ),
-            SizedBox(height: 20),
-            Icon(
-              Icons.person,
+              Icons.exit_to_app,
               size: 32,
               color: Colors.white,
             ),

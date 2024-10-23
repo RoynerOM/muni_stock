@@ -8,6 +8,7 @@ import 'package:muni_stock/app/spinner/dual_ring.dart';
 import 'package:muni_stock/features/auth/bloc/auth_bloc.dart';
 import 'package:muni_stock/features/auth/models/auth_model.dart';
 import 'package:muni_stock/features/auth/widgets/login_button.dart';
+import 'package:muni_stock/features/consumable/pages/consumable_index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -35,6 +36,12 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
+          if (state.react == AuthReact.getSuccess) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const ConsumableIndex()),
+            );
+          }
           if (state.react == AuthReact.getError) {
             Alert.error(
               context,

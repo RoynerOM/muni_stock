@@ -13,3 +13,5 @@ class RegisterEvent extends AuthEvent {
   final AuthModel model;
   RegisterEvent(this.model);
 }
+
+class CloseSesionEvent extends AuthEvent {}

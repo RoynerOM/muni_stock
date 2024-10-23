@@ -72,10 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Container(
-              constraints: BoxConstraints(maxWidth: 1320),
+              constraints: const BoxConstraints(maxWidth: 1320),
               child: Wrap(
                 children: [
-                  InputText(
+                  const InputText(
                     width: 250,
                     prefixIcon: Icon(Icons.search),
                     placeholder: 'Buscar',

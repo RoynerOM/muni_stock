@@ -30,4 +30,8 @@ enum AuthReact {
   postLoading,
   postSuccess,
   postError,
+
+  closeLoading,
+  closeSuccess,
+  closeError,
 }

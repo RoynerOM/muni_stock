@@ -26,6 +26,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthState(react: AuthReact.postLoading));
       await onRegister(event, emit);
     });
+
+    on<CloseSesionEvent>((event, emit) async {
+      AppStorage().clear();
+      emit(AuthState(react: AuthReact.postLoading));
+    });
   }
 
   Future<void> onLogin(LoginEvent evt, Emit emit) async {
