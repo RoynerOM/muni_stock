@@ -31,6 +31,7 @@ class InputDate extends StatelessWidget {
           label: labelText ?? '',
           placeholder: hitText ?? '',
           readOnly: true,
+          sufixIcon: const Icon(Icons.keyboard_arrow_down),
           onTap: () async {
             final DateTime? newDate = await showDatePicker(
               context: context,
