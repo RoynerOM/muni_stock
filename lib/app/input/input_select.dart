@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:muni_stock/app/input/input_text.dart';
 
-class SelectFieldUI extends StatefulWidget {
-  const SelectFieldUI({
+class InputSelect extends StatefulWidget {
+  const InputSelect({
     super.key,
     required this.options,
     required this.onChanged,
@@ -43,10 +43,10 @@ class SelectFieldUI extends StatefulWidget {
   final Widget? leading;
   final FormFieldValidator<String>? validator;
   @override
-  State<SelectFieldUI> createState() => _SelectFieldUIState();
+  State<InputSelect> createState() => _InputSelectState();
 }
 
-class _SelectFieldUIState extends State<SelectFieldUI> {
+class _InputSelectState extends State<InputSelect> {
   late List<Option> filteredOptions;
   late List<Option> options;
 
