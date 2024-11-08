@@ -1,10 +1,10 @@
 part of 'consumable_bloc.dart';
 
-class ConsumableState<T> {
+class ConsumableState {
   final ConsumableReact react;
-  final List<Object>? consumables;
-  final List<Object>? filterConsumables;
-  final Object? consumable;
+  final List<ConsumableModel> consumables;
+  final List<ConsumableModel> filterConsumables;
+  final ConsumableModel? consumable;
 
   ConsumableState({
     this.react = ConsumableReact.initial,
@@ -13,14 +13,14 @@ class ConsumableState<T> {
     this.consumable,
   });
 
-  ConsumableState<T> copyWith(
+  ConsumableState copyWith(
     ConsumableState state, {
     ConsumableReact? react,
-    List<Object>? consumables,
-    List<Object>? filterconsumables,
-    Object? consumable,
+    List<ConsumableModel>? consumables,
+    List<ConsumableModel>? filterconsumables,
+    ConsumableModel? consumable,
   }) =>
-      ConsumableState<T>(
+      ConsumableState(
         react: react ?? state.react,
         consumables: consumables ?? state.consumables,
         filterConsumables: filterconsumables ?? state.filterConsumables,

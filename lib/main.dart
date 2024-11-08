@@ -6,6 +6,8 @@ import 'package:muni_stock/app/input/input_date.dart';
 import 'package:muni_stock/app/input/input_select.dart';
 import 'package:muni_stock/core/storage/shared_preferences.dart';
 import 'package:muni_stock/features/auth/bloc/auth_bloc.dart';
+import 'package:muni_stock/features/consumable/bloc/consumable_bloc.dart';
+import 'package:muni_stock/features/consumable/pages/consumable_list.dart';
 import 'package:muni_stock/injection.dart';
 
 import 'app/dialogs/banner_ui.dart';
@@ -32,6 +34,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(
           create: (context) => sl()..add(ChechSesionEvent()),
         ),
+        BlocProvider<ConsumableBloc>(
+          create: (context) => sl()..add(LoadConsumableEvent()),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -40,7 +45,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        home: const LoginPage(),
+        // home: const LoginPage(),
+        home: const ConsumableList(),
       ),
     );
   }
