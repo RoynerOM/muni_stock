@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muni_stock/app/buttons/icon_button.dart';
+import 'package:muni_stock/app/color/hex_color.dart';
 import 'package:muni_stock/app/input/input_date.dart';
 import 'package:muni_stock/app/input/input_select.dart';
 import 'package:muni_stock/core/storage/shared_preferences.dart';
 import 'package:muni_stock/features/auth/bloc/auth_bloc.dart';
 import 'package:muni_stock/features/consumable/bloc/consumable_bloc.dart';
 import 'package:muni_stock/features/consumable/pages/consumable_list.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:muni_stock/injection.dart';
 
 import 'app/dialogs/banner_ui.dart';
@@ -40,8 +42,26 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
+        supportedLocales: const [
+          Locale('es', 'ES'),
+        ],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         theme: ThemeData(
+          scaffoldBackgroundColor: HexColor('F0F1EC'),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          appBarTheme: AppBarTheme(
+            centerTitle: true,
+            backgroundColor: HexColor('FFCB44'),
+            titleTextStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+              color: HexColor('0E1C28'),
+            ),
+          ),
           useMaterial3: true,
         ),
         //home: const MyHomePage(title: 'Flutter Demo Home Page'),

@@ -2,29 +2,29 @@ part of 'consumable_bloc.dart';
 
 class ConsumableState {
   final ConsumableReact react;
-  final List<ConsumableModel> consumables;
-  final List<ConsumableModel> filterConsumables;
-  final ConsumableModel? consumable;
+  final List<ImpresoraModel> impresoras;
+  final List<ImpresoraModel> filterConsumables;
+  final ImpresoraModel? impresora;
 
   ConsumableState({
     this.react = ConsumableReact.initial,
-    this.consumables = const [],
+    this.impresoras = const [],
     this.filterConsumables = const [],
-    this.consumable,
+    this.impresora,
   });
 
   ConsumableState copyWith(
     ConsumableState state, {
     ConsumableReact? react,
-    List<ConsumableModel>? consumables,
-    List<ConsumableModel>? filterconsumables,
-    ConsumableModel? consumable,
+    List<ImpresoraModel>? impresoras,
+    List<ImpresoraModel>? filterconsumables,
+    ImpresoraModel? consumable,
   }) =>
       ConsumableState(
         react: react ?? state.react,
-        consumables: consumables ?? state.consumables,
+        impresoras: impresoras ?? state.impresoras,
         filterConsumables: filterconsumables ?? state.filterConsumables,
-        consumable: consumable ?? state.consumable,
+        impresora: consumable ?? state.impresora,
       );
 }
 

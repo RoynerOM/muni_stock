@@ -22,6 +22,9 @@ dependencies:
   http: ^1.2.2
   shared_preferences: ^2.3.2
   syncfusion_flutter_datagrid: ^27.1.53
+  flutter_localization: ^0.2.2
+  flutter_localizations:
+    sdk: flutter
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muni_stock/features/consumable/models/consumable_model.dart';
+import 'package:muni_stock/features/consumable/models/impresora_model.dart';
 import 'package:muni_stock/features/consumable/repository/consmable_repository.dart';
 
 part 'consumable_event.dart';
@@ -24,7 +24,7 @@ class ConsumableBloc extends Bloc<ConsumableEvent, ConsumableState> {
       emit(
         ConsumableState().copyWith(
           state,
-          consumables: list,
+          impresoras: list,
           filterconsumables: list,
           react: React.getSuccess,
         ),
