@@ -15,6 +15,7 @@ class InputText extends StatelessWidget {
     this.onTap,
     this.prefixIcon,
     this.obscureText = false,
+    this.validator,
   });
   final String label;
   final String placeholder;
@@ -28,6 +29,7 @@ class InputText extends StatelessWidget {
   final Widget? sufixIcon;
   final Widget? prefixIcon;
   final GestureTapCallback? onTap;
+  final String? Function(String? value)? validator;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -44,7 +46,7 @@ class InputText extends StatelessWidget {
               ),
             ),
           const SizedBox(height: 4),
-          TextField(
+          TextFormField(
             readOnly: readOnly,
             enabled: enabled,
             onChanged: onChanged,
@@ -52,6 +54,7 @@ class InputText extends StatelessWidget {
             obscureText: obscureText,
             style: style,
             onTap: onTap,
+            validator: validator,
             decoration: InputDecoration(
               hintText: placeholder,
               suffixIcon: sufixIcon,

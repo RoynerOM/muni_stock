@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:muni_stock/app/color/hex_color.dart';
-import 'package:muni_stock/core/utils/formats.dart';
-import 'package:muni_stock/features/consumable/models/impresora_model.dart';
+
+import 'package:muni_stock/features/printer/models/impresora_model.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -83,32 +83,6 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  Widget _detalles() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildDetailColumn(label: 'Fecha:', value: getFormattedDate(fecha)),
-          _buildDetailColumn(label: 'Stock:', value: stock),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDetailColumn({required String label, required String value}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(value),
-      ],
-    );
-  }
-
   Widget _acciones() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -165,10 +139,8 @@ class ProductCard extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         ListView(
-          shrinkWrap:
-              true, // Evita que el ListView ocupe más espacio del necesario
-          physics:
-              NeverScrollableScrollPhysics(), // Deshabilita el desplazamiento
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0),

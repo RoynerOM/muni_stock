@@ -51,8 +51,7 @@ class ImpresoraModel {
         "tipo": tipo,
         "modeloTinta": modeloTinta,
         "stock": stock,
-        "disponible": disponible,
-        "tintas": tintas.toJson(),
+        "disponible": disponible
       };
 }
 

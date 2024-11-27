@@ -179,7 +179,7 @@ class _InputSelectState extends State<InputSelect> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             widget.leading ??
-                                Icon(
+                                const Icon(
                                   Icons.circle,
                                   size: 12,
                                   color: Colors.grey,
@@ -224,7 +224,6 @@ class _InputSelectState extends State<InputSelect> {
                 child: InputText(
                   placeholder: widget.hitSearchText ?? '',
                   onChanged: (value) {
-                    print(value);
                     if (value.isNotEmpty) {
                       filteredOptions = filteredOptions
                           .where((item) => item.value

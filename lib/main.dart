@@ -7,15 +7,15 @@ import 'package:muni_stock/app/input/input_date.dart';
 import 'package:muni_stock/app/input/input_select.dart';
 import 'package:muni_stock/core/storage/shared_preferences.dart';
 import 'package:muni_stock/features/auth/bloc/auth_bloc.dart';
-import 'package:muni_stock/features/consumable/bloc/consumable_bloc.dart';
-import 'package:muni_stock/features/consumable/pages/consumable_list.dart';
+import 'package:muni_stock/features/printer/bloc/printer_bloc.dart';
+import 'package:muni_stock/features/printer/pages/printer_list.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:muni_stock/injection.dart';
 
 import 'app/dialogs/banner_ui.dart';
 import 'app/dialogs/delete_alert.dart';
 import 'app/input/input_text.dart';
-import 'features/auth/pages/login.dart';
+//import 'features/auth/pages/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(
           create: (context) => sl()..add(ChechSesionEvent()),
         ),
-        BlocProvider<ConsumableBloc>(
-          create: (context) => sl()..add(LoadConsumableEvent()),
+        BlocProvider<PrinterBloc>(
+          create: (context) => sl()..add(LoadPrinterEvent()),
         ),
       ],
       child: MaterialApp(
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         ),
         //home: const MyHomePage(title: 'Flutter Demo Home Page'),
         // home: const LoginPage(),
-        home: const ConsumableList(),
+        home: const PrinterIndex(),
       ),
     );
   }
