@@ -81,7 +81,7 @@ class _InputSelectState extends State<InputSelect> {
         controller: widget.controller,
         label: widget.labelText ?? '',
         placeholder: widget.hintText ?? '',
-        //  validator: widget.validator,
+        validator: widget.validator,
         readOnly: true,
         enabled: false,
         style: const TextStyle(

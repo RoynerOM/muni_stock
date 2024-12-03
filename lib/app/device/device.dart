@@ -3,7 +3,7 @@ import 'package:muni_stock/core/utils/helpers.dart';
 
 class Device {
   static void getInfo(context) {
-    double w = widthContainer(context);
+    double w = media(context);
     if (w == 540) return console('SM'); //sm
     if (w == 720) return console('MD'); //md
     if (w == 960) return console('LG'); //lg
@@ -39,8 +39,8 @@ class Device {
     return MediaQuery.of(context).orientation;
   }
 
-  static double widthContainer(BuildContext context) {
-    double w = Device.screenWidth(context);
+  static double media(BuildContext context) {
+    double w = MediaQuery.of(context).size.width;
     if (w < 576) return w;
     if (w >= 576 && w < 768) return 540;
     if (w >= 768 && w < 992) return 720;
@@ -60,7 +60,7 @@ class Device {
     int? xxl = 12,
     double? gutter = 24,
   }) {
-    double w = widthContainer(context);
+    double w = media(context);
     double percent = (w / 12);
     if (w == 540) return percent * sm! - gutter!; //sm
     if (w == 720) return percent * md! - gutter!; //md

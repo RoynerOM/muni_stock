@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muni_stock/app/dialogs/banner_ui.dart';
 import 'package:muni_stock/app/input/input_text.dart';
+import 'package:muni_stock/app/scroll/center_scroll.dart';
 import 'package:muni_stock/features/printer/bloc/printer_bloc.dart';
 import 'package:muni_stock/features/printer/models/impresora_model.dart';
+
+import '../../../app/input/input_select.dart';
 
 class AddPrinter extends StatefulWidget {
   const AddPrinter({super.key});
@@ -16,24 +19,22 @@ class _AddPrinterState extends State<AddPrinter> {
   final serieController = TextEditingController();
   final marcaController = TextEditingController();
   final modeloController = TextEditingController();
+  final tipoController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void clear() {
     serieController.clear();
     marcaController.clear();
     modeloController.clear();
+    tipoController.clear();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            'Nueva Impresora',
-            style: TextStyle(
-                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          backgroundColor: const Color.fromARGB(255, 2, 0, 117)),
+        title: const Text('Nueva Impresora'),
+      ),
       body: BlocConsumer<PrinterBloc, PrinterState>(
         listener: (context, state) {
           if (state.react == React.postSuccess) {
@@ -51,7 +52,7 @@ class _AddPrinterState extends State<AddPrinter> {
               child: CircularProgressIndicator(),
             );
           }
-          return Center(
+          return CenterScroll(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 720),
               padding: const EdgeInsets.all(20.0),
@@ -59,15 +60,35 @@ class _AddPrinterState extends State<AddPrinter> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    const SizedBox(height: 20),
                     InputText(
                       controller: serieController,
                       label: 'Serie',
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor, digite una serie';
+                          return 'La serie es obligatoria. Por favor, ingrésela.';
                         }
                         return null;
                       },
+                    ),
+                    const SizedBox(height: 20),
+                    InputSelect(
+                      controller: tipoController,
+                      labelText: 'Tipo de tinta',
+                      options: [
+                        Option(value: 'Tóner'),
+                        Option(value: 'Inyección'),
+                        Option(value: 'Cartucho'),
+                        Option(value: 'Pigmento'),
+                        Option(value: 'Otros')
+                      ],
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Seleccione el tipo de tinta.';
+                        }
+                        return null;
+                      },
+                      onChanged: (Option value) {},
                     ),
                     const SizedBox(height: 20),
                     InputText(
@@ -75,7 +96,7 @@ class _AddPrinterState extends State<AddPrinter> {
                       label: 'Marca/Modelo',
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor, digite un modelo/serie';
+                          return 'La marca y modelo son obligatorios. Por favor, ingréselos.';
                         }
                         return null;
                       },
@@ -86,37 +107,21 @@ class _AddPrinterState extends State<AddPrinter> {
                       label: 'Modelo de Tinta',
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor, digite un modelo de tinta';
+                          return 'El modelo de tinta es obligatorio. Por favor, ingréselo.';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 20),
-                    const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 211, 5, 5),
-                            foregroundColor: Colors.white,
-                          ),
-                          child: const Text(
-                            'Cancelar',
-                            style: TextStyle(fontSize: 17),
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        ElevatedButton(
-                          onPressed: () {
                             ImpresoraModel model = ImpresoraModel(
                               serie: serieController.text.trim(),
                               modelo: marcaController.text,
-                              tipo: 'Pigmento',
+                              tipo: tipoController.text,
                               modeloTinta: modeloController.text,
                               stock: '0',
                               disponible: '1',

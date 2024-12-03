@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muni_stock/app/color/hex_color.dart';
+import 'package:muni_stock/features/printer/bloc/printer_bloc.dart';
 
 import 'package:muni_stock/features/printer/models/impresora_model.dart';
 
@@ -13,7 +15,8 @@ class ProductCard extends StatelessWidget {
     required this.tipo,
     required this.fecha,
     required this.stock,
-    required this.tintas, // Añadido parámetro para las tintas
+    required this.tintas,
+    required this.serie, // Añadido parámetro para las tintas
   });
 
   final String id;
@@ -23,7 +26,7 @@ class ProductCard extends StatelessWidget {
   final String fecha;
   final String stock;
   final Tintas tintas; // Lista de tintas con nombres y cantidades
-
+  final String serie;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -84,31 +87,35 @@ class ProductCard extends StatelessWidget {
   }
 
   Widget _acciones() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        _buildIconButton(
-            icon: CupertinoIcons.minus,
-            tooltip: 'Salida',
-            color: HexColor('3E403F'),
-            onPressed: () {}),
-        _buildIconButton(
-            icon: Icons.add,
-            tooltip: 'Entrada',
-            color: HexColor('3E403F'),
-            onPressed: () {}),
-        _buildIconButton(
-            icon: Icons.edit,
-            tooltip: 'Editar',
-            color: HexColor('3E403F'),
-            onPressed: () {}),
-        _buildIconButton(
-            icon: Icons.delete,
-            tooltip: 'Eliminar',
-            color: Colors.red,
-            onPressed: () {}),
-      ],
-    );
+    return Builder(builder: (context) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _buildIconButton(
+              icon: CupertinoIcons.minus,
+              tooltip: 'Salida',
+              color: HexColor('3E403F'),
+              onPressed: () {}),
+          _buildIconButton(
+              icon: Icons.add,
+              tooltip: 'Entrada',
+              color: HexColor('3E403F'),
+              onPressed: () {}),
+          _buildIconButton(
+              icon: Icons.edit,
+              tooltip: 'Editar',
+              color: HexColor('3E403F'),
+              onPressed: () {}),
+          _buildIconButton(
+              icon: Icons.delete,
+              tooltip: 'Eliminar',
+              color: Colors.red,
+              onPressed: () {
+                _showDeleteDialog(context);
+              }),
+        ],
+      );
+    });
   }
 
   Widget _buildIconButton({
@@ -189,6 +196,52 @@ class ProductCard extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  void _showDeleteDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          title: Text(
+            id,
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          content: const Text(
+            '¿Estás seguro de que quieres eliminar esta impresora?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'Cancelar',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.redAccent,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                BlocProvider.of<PrinterBloc>(context)
+                    .add(DeletePrinterEvent(serie));
+              },
+              child: const Text('Eliminar'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

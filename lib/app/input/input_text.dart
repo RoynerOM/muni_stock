@@ -29,7 +29,7 @@ class InputText extends StatelessWidget {
   final Widget? sufixIcon;
   final Widget? prefixIcon;
   final GestureTapCallback? onTap;
-  final String? Function(String? value)? validator;
+  final FormFieldValidator<String>? validator;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

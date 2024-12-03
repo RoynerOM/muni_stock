@@ -20,6 +20,11 @@ class PrinterBloc extends Bloc<PrinterEvent, PrinterState> {
       emit(PrinterState().copyWith(state, react: React.postLoading));
       await onPostPrinter(event, emit);
     });
+
+    on<DeletePrinterEvent>((event, emit) async {
+      emit(PrinterState().copyWith(state, react: React.deleteLoading));
+      await onDeletePrinter(event, emit);
+    });
   }
 
   Future<void> onLoadPrinters(LoadPrinterEvent evt, Emit emit) async {
@@ -50,6 +55,20 @@ class PrinterBloc extends Bloc<PrinterEvent, PrinterState> {
       }
     } catch (e) {
       emit(PrinterState().copyWith(state, react: React.postError));
+    }
+  }
+
+  Future<void> onDeletePrinter(DeletePrinterEvent evt, Emit emit) async {
+    try {
+      final list = await api.delete(evt.serie);
+      if (list) {
+        emit(PrinterState().copyWith(state, react: React.deleteSuccess));
+        add(LoadPrinterEvent());
+      } else {
+        emit(PrinterState().copyWith(state, react: React.deleteError));
+      }
+    } catch (e) {
+      emit(PrinterState().copyWith(state, react: React.deleteError));
     }
   }
 }

@@ -25,4 +25,14 @@ class PrinterRepository {
 
     return (response.statusCode == 200);
   }
+
+  Future<bool> delete(String serie) async {
+    final response = await http.delete(
+      Uri.parse(_apiUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({"serie": serie}),
+    );
+
+    return (response.statusCode == 200);
+  }
 }

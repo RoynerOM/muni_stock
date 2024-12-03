@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muni_stock/app/color/hex_color.dart';
+import 'package:muni_stock/app/dialogs/banner_ui.dart';
 import 'package:muni_stock/app/spinner/dual_ring.dart';
 import 'package:muni_stock/features/printer/bloc/printer_bloc.dart';
 import 'package:muni_stock/features/printer/pages/add_printer.dart';
@@ -21,10 +22,26 @@ class _PrinterListState extends State<PrinterIndex> {
         title: const Text('Impresoras'),
       ),
       body: BlocConsumer<PrinterBloc, PrinterState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.react == React.deleteSuccess) {
+            showAlertSuccess('Ok', 'Elemento eliminado!');
+          }
+
+          if (state.react == React.postError) {
+            showAlertError('Error', 'No se pudo eliminar');
+          }
+        },
         builder: (context, state) {
           if (state.react == React.getLoading) {
             return const Center(child: DualRing());
+          }
+
+          if (state.react == React.deleteLoading) {
+            return const Center(
+              child: DualRing(
+                message: 'Eliminando impresora',
+              ),
+            );
           }
 
           return GridView.builder(
@@ -45,6 +62,7 @@ class _PrinterListState extends State<PrinterIndex> {
                 fecha: "",
                 stock: item.stock,
                 tintas: item.tintas,
+                serie: item.serie,
               );
             },
           );
@@ -60,5 +78,13 @@ class _PrinterListState extends State<PrinterIndex> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  void showAlertError(String title, String message) {
+    Alert.error(context, title: title, message: message);
+  }
+
+  void showAlertSuccess(String title, String message) {
+    Alert.success(context, title: title, message: message, pop: false);
   }
 }

@@ -53,6 +53,13 @@ class ImpresoraModel {
         "stock": stock,
         "disponible": disponible
       };
+
+  Map<String, dynamic> toPut() => {
+        "serie": serie,
+        "modelo": modelo,
+        "tipo": tipo,
+        "modeloTinta": modeloTinta
+      };
 }
 
 class Tintas {
